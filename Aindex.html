@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cascavel</title>
+
+    
+    <link rel="icon" type="image/png" href="img/logo.ico">
+
+    <style>
+
+        /* 
+           RESET BÁSICO
+           Remove margens/paddings padrão do navegador e garante que
+           padding/border não aumentem o tamanho final dos elementos.
+         */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /*  
+           CORES E VARIÁVEIS GLOBAIS
+           Definidas em :root para poder reutilizar em todo o CSS.
+           Paleta fria: branco / off-white + azul petróleo de destaque.
+           Se quiser trocar as cores do site inteiro, mude só aqui.
+         */
+        :root {
+            --cor-fundo: #F5F8FA;        /* fundo geral da página (off-white azulado) */
+            --cor-superficie: #FFFFFF;   /* fundo dos cards e do header */
+            --cor-texto: #1E2A36;        /* texto principal */
+            --cor-texto-suave: #5B6B79;  /* texto secundário (descrições) */
+            --cor-linha: #E1E7EC;        /* bordas e divisores */
+            --cor-destaque: #2C6E91;     /* azul petróleo - botões e links */
+            --cor-destaque-escuro: #1F4F6B;
+            --cor-secundaria: #3C9D9B;   /* verde-azulado - selos e detalhes */
+            --raio: 10px;                /* raio de borda padrão */
+            --sombra: 0 2px 6px rgba(30, 42, 54, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif; /* fonte simples e legível */
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;   /* nenhuma imagem estoura o container do card */
+            display: block;
+        }
+
+        h1, h2, h3 {
+            color: var(--cor-texto);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 
+           HEADER / BANNER
+           Logo + nome do site + frase de efeito, tudo alinhado
+           lado a lado em telas grandes.
+         */
+        .baner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background-color: var(--cor-superficie);
+            border-bottom: 1px solid var(--cor-linha);
+            padding: 16px 24px;
+        }
+
+        .logoimg {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--cor-destaque);
+        }
+
+        .banertexto h1 {
+            font-size: 22px;
+        }
+
+        .banertexto p {
+            font-size: 14px;
+            color: var(--cor-texto-suave);
+        }
+
+        /* 
+           SEÇÃO "SOBRE NÓS"
+           Texto de apresentação do site, logo abaixo do banner.
+        */
+        .sobrenos {
+            background-color: var(--cor-superficie);
+            padding: 24px;
+            border-bottom: 1px solid var(--cor-linha);
+        }
+
+        .sobrenos h1 {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--cor-texto-suave);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /*
+           SEÇÕES DE CATEGORIA
+           Cada categoria (Alimentação, Automóveis, etc.) é uma
+           <section> com título + uma grade de cards.
+        */
+        main > section {
+            padding: 40px 24px;
+            border-bottom: 1px solid var(--cor-linha);
+        }
+
+        main > section h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        /* Container que agrupa os cards de cada categoria.
+           display:grid + auto-fit faz os cards se reorganizarem
+           sozinhos conforme o espaço disponível na tela. */
+        [class^="cartoes-"] {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        /* 
+           CARD DE ANUNCIANTE (article.cartao)
+           Estrutura visual comum a todos os anúncios: imagem, nome,
+           descrição, cidade e botão, com sombra e hover suave.
+         */
+        .cartao {
+            background-color: var(--cor-superficie);
+            border: 1px solid var(--cor-linha);
+            border-radius: var(--raio);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* efeito suave no hover */
+        }
+
+        .cartao:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--sombra);
+        }
+
+        .cartao img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .cartao h3 {
+            font-size: 16px;
+        }
+
+        .cartao p {
+            font-size: 13.5px;
+            color: var(--cor-texto-suave);
+        }
+
+        .card-cidade {
+            font-size: 12px;
+            color: var(--cor-secundaria);
+            font-weight: 600;
+        }
+
+        .card-botao {
+            margin-top: 8px;
+            align-self: flex-start;
+            padding: 6px 14px;
+            background-color: var(--cor-destaque);
+            color: #FFFFFF;
+            border-radius: 999px;
+            font-size: 13px;
+            transition: background-color 0.2s ease;
+        }
+
+        .card-botao:hover {
+            background-color: var(--cor-destaque-escuro);
+        }
+
+        /* 
+           CARD "VAGAS DISPONÍVEIS"
+           Fica no final da grade de cada categoria, avisando que
+           ainda existe espaço pra novos anunciantes (mín. 5 / máx. 20).
+           Tem borda tracejada para se diferenciar dos anúncios reais.
+     */
+        .cartao-vaga {
+            border-style: dashed;
+            border-color: var(--cor-secundaria);
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 4px;
+        }
+
+        .cartao-vaga strong {
+            font-size: 15px;
+            color: var(--cor-destaque-escuro);
+        }
+
+        .cartao-vaga span {
+            font-size: 13px;
+            color: var(--cor-texto-suave);
+        }
+
+        /* 
+           RESPONSIVIDADE (@media)
+           Ajustes para telas médias (tablets) e pequenas (celulares).
+           A grade de cards já se reorganiza sozinha pelo auto-fit,
+           então aqui só ajustamos espaçamentos e o header.
+         */
+
+        /* Telas médias até 900px */
+        @media (max-width: 900px) {
+            main > section {
+                padding: 32px 16px;
+            }
+        }
+
+        /* Telas pequenas*/
+        @media (max-width: 600px) {
+
+            .baner {
+                flex-direction: column; 
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .sobrenos h1 {
+                font-size: 14px;
+            }
+
+            main > section h2 {
+                font-size: 18px;
+            }
+
+            /* Em telas bem pequenas, */
+            [class^="cartoes-"] {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <header class="baner">
+        <img src="img/logoportaldecascavel.jpg" alt="" class="logoimg">
+        <div class="banertexto">
+            <h1>
+                Portal Cascavel
+            </h1>
+            <p>
+                Encontre os melhores comércios de Cascavel.
+            </p>
+        </div>
+    </header>
+    <section class="sobrenos">
+        <h1>
+            O Portal Cascavel foi criado com o intuito de juntar os melhores comércios em um só lugar, para que com um só clique possa ser escolhido qual comércio mais se encaixa com a sua necessidade.
+        </h1>
+    </section>
+
+    <main>
+        <section id="alimetacao">
+            <h2>Alimentação</h2>
+            
+            <div class="cartoes-alimentacao">
+                <article class="cartao">
+                    <img src="img/alimentação/irani.png" alt="Supermercado Irani">
+                    <h3>Supermercado Irani</h3>
+                    <p>Rede tradicional de supermercados com variedade, padaria e açougue completo.</p>
+                    <p class="card-cidade">Bairro: Parque Verde - Cascavel - PR</p>
+                    <a href="irani.html" class="card-botao">Ver mais</a>
+                </article>
+            </div>
+ 
+            <div class="cartoes-alimentacao">
+                <article class="cartao">
+                    <img src="img/alimentação/almayer.jpg" alt="Allmayer Supermercados">
+                    <h3>Allmayer Supermercados</h3>
+                    <p>Variedade em hortifrúti, rotisseria e ofertas diárias para a família.</p>
+                    <p class="card-cidade">Bairro: Neva - Cascavel - PR</p>
+                    <a href="allmayer.html" class="card-botao">Ver mais</a>
+                </article>
+            </div>
+ 
+            <div class="cartoes-alimentacao">
+                <article class="cartao">
+                    <img src="img/alimentação/armazem.jpg" alt="Armazém do Pão">
+                    <h3>Armazém do Pão</h3>
+                    <p>Pães artesanais, cafés especiais, salgados e doces finos para todos os momentos.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="armazempao.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+ 
+            <div class="cartoes-alimentacao">
+                <article class="cartao">
+                    <img src="img/alimentação/gelato da praca.jpg" alt="Gelato da Praça">
+                    <h3>Gelato da Praça</h3>
+                    <p>Gelateria artesanal com sabores variados no melhor estilo italiano.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="gelatopraca.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+ 
+            <div class="cartoes-alimentacao">
+                <article class="cartao">
+                    <img src="img/alimentação/the best.png" alt="The Best Açaí">
+                    <h3>The Best Açaí</h3>
+                    <p>Buffet de açaí completo com diversos acompanhamentos e opções fit.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="thebest.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <!-- Card informativo: mostra quantas vagas ainda restam nesta categoria (mín. 5 / máx. 20) -->
+            <div class="cartoes-alimentacao">
+                <article class="cartao cartao-vaga">
+                    <strong>+15 vagas disponíveis</strong>
+                    <span>Anuncie sua empresa nesta categoria</span>
+                    <a href="formsdecontato.html" class="card-botao">Quero Anunciar</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="automoveis">
+            <h2>Automóveis</h2>
+
+            <div class="cartoes-automoveis">
+                <article class="cartao">
+                    <img src="img/automoveis/localiza.png" alt="Localiza Aluguel de Carros">
+                    <h3>Localiza Aluguel de Carros</h3>
+                    <p>Locação de veículos leves e utilitários para viagens e trabalho.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="localiza.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-automoveis">
+                <article class="cartao">
+                    <img src="img/automoveis/fagundes.jpg" alt="Fagundes Automóveis">
+                    <h3>Fagundes Automóveis</h3>
+                    <p>Compra, venda e troca de veículos novos e seminovos com procedência.</p>
+                    <p class="card-cidade">Bairro: Coqueiral - Cascavel - PR</p>
+                    <a href="fagundes.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-automoveis">
+                <article class="cartao">
+                    <img src="img/automoveis/autozone.jpg" alt="AutoZone">
+                    <h3>AutoZone</h3>
+                    <p>Autopeças, acessórios e itens de manutenção para todos os modelos de veículos.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="autozone.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-automoveis">
+                <article class="cartao">
+                    <img src="img/automoveis/cascavelauto.jpg" alt="Cascavel Auto Peças">
+                    <h3>Cascavel Auto Peças</h3>
+                    <p>Amplo estoque de autopeças e acessórios para veículos nacionais e importados.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="cvelauto.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-automoveis">
+                <article class="cartao">
+                    <img src="img/automoveis/lava car.jpg" alt="Auto Brilho">
+                    <h3>Auto Brilho</h3>
+                    <p>Estética automotiva, lavagem detalhada, polimento e higienização interna.</p>
+                    <p class="card-cidade">Bairro: Neva - Cascavel - PR</p>
+                    <a href="autobrilho.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <!-- Card informativo: mostra quantas vagas ainda restam nesta categoria (mín. 5 / máx. 20) -->
+            <div class="cartoes-automoveis">
+                <article class="cartao cartao-vaga">
+                    <strong>+15 vagas disponíveis</strong>
+                    <span>Anuncie sua empresa nesta categoria</span>
+                    <a href="formsdecontato.html" class="card-botao">Quero Anunciar</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="beleza-e-saude">
+            <h2>Beleza e Saúde</h2>
+
+            <div class="cartoes-beleza-e-saude">
+                <article class="cartao">
+                    <img src="img/belezasaude/baruch.jpg" alt="Barbearia Baruch">
+                    <h3>Barbearia Baruch</h3>
+                    <p>Cortes modernos, barba alinhada e ambiente descontraído com atendimento exclusivo.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="baruch.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-beleza-e-saude">
+                <article class="cartao">
+                    <img src="img/belezasaude/engenharia do corpo.png" alt="Academia Engenharia do Corpo">
+                    <h3>Academia Engenharia do Corpo</h3>
+                    <p>Estrutura moderna para musculação, aulas de ritmo, funcional e pilates.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="engdocorpo.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-beleza-e-saude">
+                <article class="cartao">
+                    <img src="img/belezasaude/espacolazer.png" alt="Espaço Laser Depilação">
+                    <h3>Espaço Laser Depilação</h3>
+                    <p>Especialistas em depilação a laser para homens e mulheres.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="espacolazer.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-beleza-e-saude">
+                <article class="cartao">
+                    <img src="img/belezasaude/nissei.jpg" alt="Farmácia de Manipulação Nissei">
+                    <h3>Farmácia de Manipulação Nissei</h3>
+                    <p>Fórmulas personalizadas, suplementos e linha completa de saúde e cuidados.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="nissei.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-beleza-e-saude">
+                <article class="cartao">
+                    <img src="img/belezasaude/virtuosa.jpg" alt="Virtuosa Estética e Beleza">
+                    <h3>Virtuosa Estética e Beleza</h3>
+                    <p>Tratamentos faciais e corporais com atendimento personalizado.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="virtuosa.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <!-- Card informativo: mostra quantas vagas ainda restam nesta categoria (mín. 5 / máx. 20) -->
+            <div class="cartoes-beleza-e-saude">
+                <article class="cartao cartao-vaga">
+                    <strong>+15 vagas disponíveis</strong>
+                    <span>Anuncie sua empresa nesta categoria</span>
+                    <a href="formsdecontato.html" class="card-botao">Quero Anunciar</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="construcao">
+            <h2>Construção</h2>
+
+            <div class="cartoes-construcao">
+                <article class="cartao">
+                    <img src="img/construcao/balaroti.png" alt="Balaroti Materiais de Construção">
+                    <h3>Balaroti Materiais de Construção</h3>
+                    <p>Tudo para sua obra: do básico ao acabamento, pisos, revestimentos e iluminação.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="balaroti.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-construcao">
+                <article class="cartao">
+                    <img src="img/construcao/construpan.jpg" alt="Construpan Materiais para Construção">
+                    <h3>Construpan Materiais para Construção</h3>
+                    <p>Cimento, tijolos, areia, ferramentas e tintas com entrega rápida.</p>
+                    <p class="card-cidade">Bairro: Parque Verde - Cascavel - PR</p>
+                    <a href="construpan.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-construcao">
+                <article class="cartao">
+                    <img src="img/construcao/forte.jpg" alt="Forte Construções">
+                    <h3>Forte Construções</h3>
+                    <p>Reformas, ampliações e acompanhamento técnico completo para sua obra.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="forteimobo.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-construcao">
+                <article class="cartao">
+                    <img src="img/construcao/sr.jpg" alt="SR Construtora">
+                    <h3>SR Construtora</h3>
+                    <p>Projetos e execução de obras residenciais e comerciais com qualidade garantida.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="srconstrutora.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-construcao">
+                <article class="cartao">
+                    <img src="img/construcao/vidros oeste.jpg" alt="Oeste Vidros">
+                    <h3>Oeste Vidros</h3>
+                    <p>Instalação de vidros temperados, box para banheiro, espelhos e esquadrias.</p>
+                    <p class="card-cidade">Bairro: Neva - Cascavel - PR</p>
+                    <a href="oestevidros.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <!-- Card informativo: mostra quantas vagas ainda restam nesta categoria (mín. 5 / máx. 20) -->
+            <div class="cartoes-construcao">
+                <article class="cartao cartao-vaga">
+                    <strong>+15 vagas disponíveis</strong>
+                    <span>Anuncie sua empresa nesta categoria</span>
+                    <a href="formsdecontato.html" class="card-botao">Quero Anunciar</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="eletronicos">
+            <h2>Eletrônicos</h2>
+
+            <div class="cartoes-eletronicos">
+                <article class="cartao">
+                    <img src="img/eletronico/eletrooeste.jpg" alt="Eletroeste Materiais Elétricos">
+                    <h3>Eletroeste Materiais Elétricos</h3>
+                    <p>Materiais elétricos residenciais, prediais e industriais de alta qualidade.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="eletrooeste.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-eletronicos">
+                <article class="cartao">
+                    <img src="img/eletronico/magalu.jpg" alt="Magazine Luiza">
+                    <h3>Magazine Luiza</h3>
+                    <p>Eletrodomésticos, TVs, smartphones e tecnologia com ótimas condições de pagamento.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="magalu.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-eletronicos">
+                <article class="cartao">
+                    <img src="img/eletronico/melevacell.jpg" alt="MeleveCel Celulares e Eletrônicos">
+                    <h3>MeleveCel Celulares e Eletrônicos</h3>
+                    <p>Venda de celulares novos e seminovos, acessórios e assistência técnica.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="melevacel.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <div class="cartoes-eletronicos">
+                <article class="cartao">
+                    <img src="img/eletronico/micro.jpg" alt="Microservice Informática">
+                    <h3>Microservice Informática</h3>
+                    <p>Venda de computadores, peças, periféricos e manutenção corporativa e residencial.</p>
+                    <p class="card-cidade">Bairro: Centro - Cascavel - PR</p>
+                    <a href="microservice.html" class="card-botao">Ver mais</a>    
+                </article>
+            </div>
+
+            <!-- Card informativo: mostra quantas vagas ainda restam nesta categoria (mín. 5 / máx. 20) -->
+            <div class="cartoes-eletronicos">
+                <article class="cartao cartao-vaga">
+                    <strong>+15 vagas disponíveis</strong>
+                    <span>Anuncie sua empresa nesta categoria</span>
+                    <a href="formsdecontato.html" class="card-botao">Quero Anunciar</a>
+                </article>
+            </div>
+        </section>
+
+    </main>
+    
+</body>
+</html>

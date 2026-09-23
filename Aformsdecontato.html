@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuncie Conosco - Portal Cascavel</title>
+
+    <link rel="icon" type="image/png" href="img/logo.ico">
+
+
+    <style>
+
+        /* =========================================================
+           RESET BÁSICO
+           Igual ao index.html, pra manter o mesmo comportamento.
+        ========================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* =========================================================
+           CORES E VARIÁVEIS GLOBAIS
+           Exatamente as mesmas do site principal, pra manter a
+           identidade visual entre as páginas.
+        ========================================================= */
+        :root {
+            --cor-fundo: #F5F8FA;
+            --cor-superficie: #FFFFFF;
+            --cor-texto: #1E2A36;
+            --cor-texto-suave: #5B6B79;
+            --cor-linha: #E1E7EC;
+            --cor-destaque: #2C6E91;
+            --cor-destaque-escuro: #1F4F6B;
+            --cor-secundaria: #3C9D9B;
+            --raio: 10px;
+            --sombra: 0 2px 6px rgba(30, 42, 54, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        h1, h2, h3 {
+            color: var(--cor-texto);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* =========================================================
+           HEADER / BANNER
+           Mesma estrutura do site principal, com link de volta.
+        ========================================================= */
+        .baner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background-color: var(--cor-superficie);
+            border-bottom: 1px solid var(--cor-linha);
+            padding: 16px 24px;
+        }
+
+        .logoimg {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--cor-destaque);
+        }
+
+        .banertexto h1 {
+            font-size: 22px;
+        }
+
+        .banertexto p {
+            font-size: 14px;
+            color: var(--cor-texto-suave);
+        }
+
+        /* Link "Voltar à página principal", fica à direita do header em telas grandes */
+        .voltar {
+            margin-left: auto;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cor-destaque);
+            white-space: nowrap;
+        }
+
+        .voltar:hover {
+            color: var(--cor-destaque-escuro);
+        }
+
+        /* =========================================================
+           SEÇÃO DE APRESENTAÇÃO DO FORMULÁRIO
+           Título "Quer divulgar sua empresa aqui?" + texto explicando
+           como funciona + contatos alternativos.
+        ========================================================= */
+        .anuncie-intro {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 24px 8px;
+            text-align: center;
+        }
+
+        .anuncie-intro h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .anuncie-intro p {
+            color: var(--cor-texto-suave);
+            font-size: 15px;
+        }
+
+        /* Lista de contatos alternativos (WhatsApp | E-mail | Redes sociais) */
+        .contatos-alt {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .contatos-alt a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cor-destaque);
+        }
+
+        .contatos-alt a:hover {
+            color: var(--cor-destaque-escuro);
+        }
+
+        /* =========================================================
+           FORMULÁRIO "QUERO ANUNCIAR"
+           Card branco central, com os campos pedidos no enunciado:
+           nome, empresa, telefone/whatsapp, e-mail, categoria e
+           mensagem.
+        ========================================================= */
+        .form-anunciar {
+            max-width: 640px;
+            margin: 32px auto 60px;
+            background-color: var(--cor-superficie);
+            border: 1px solid var(--cor-linha);
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .campo label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--cor-texto-suave);
+        }
+
+        /* Estilo comum a todos os campos de entrada */
+        .campo input,
+        .campo select,
+        .campo textarea {
+            font-family: inherit;
+            font-size: 14px;
+            padding: 10px 12px;
+            border: 1px solid var(--cor-linha);
+            border-radius: 8px;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            outline: none;
+        }
+
+        /* Realce visual quando o campo está em foco (acessibilidade) */
+        .campo input:focus,
+        .campo select:focus,
+        .campo textarea:focus {
+            border-color: var(--cor-destaque);
+        }
+
+        .campo textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Botão de envio do formulário */
+        .botao-enviar {
+            align-self: flex-start;
+            padding: 12px 26px;
+            background-color: var(--cor-destaque);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .botao-enviar:hover {
+            background-color: var(--cor-destaque-escuro);
+        }
+
+        /* =========================================================
+           RESPONSIVIDADE (@media)
+           Mesmos pontos de quebra usados no site principal.
+        ========================================================= */
+
+        /* Telas médias (tablets, até 900px) */
+        @media (max-width: 900px) {
+            .anuncie-intro,
+            .form-anunciar {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+        }
+
+        /* Telas pequenas (celulares, até 600px) */
+        @media (max-width: 600px) {
+
+            .baner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .voltar {
+                margin-left: 0;
+            }
+
+            .anuncie-intro h2 {
+                font-size: 21px;
+            }
+
+            .form-anunciar {
+                padding: 20px;
+                margin: 24px 12px 40px;
+            }
+
+            .botao-enviar {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- 
+         HEADER
+ -->
+    <header class="baner">
+        <img src="img/logoportaldecascavel.jpg" alt="" class="logoimg">
+        <div class="banertexto">
+            <h1>Portal Cascavel</h1>
+            <p>Encontre os melhores comércios de Cascavel.</p>
+        </div>
+        <a href="index.html" class="voltar">&larr; Voltar à página principal</a>
+    </header>
+
+    <!-- ===========================================================
+         APRESENTAÇÃO / CHAMADA
+    =========================================================== -->
+    <section class="anuncie-intro">
+        <h2>Quer divulgar sua empresa aqui?</h2>
+        <p>
+            Preencha o formulário abaixo com os dados do seu negócio. Nossa
+            equipe entra em contato para explicar como funciona a divulgação
+            no Portal Cascavel e ativar seu anúncio na categoria escolhida.
+        </p>
+
+        <!-- Formas alternativas de contato, conforme pedido no enunciado -->
+        <div class="contatos-alt">
+            <a href="#">WhatsApp</a>
+            <a href="#">E-mail</a>
+            <a href="#">Redes Sociais</a>
+        </div>
+    </section>
+
+    <!--
+         FORMULÁRIO "QUERO ANUNCIAR"
+         Campos: nome, empresa, telefone/whatsapp, e-mail, categoria
+         desejada e mensagem — exatamente o que o enunciado pede.
+     -->
+    <form class="form-anunciar" id="anuncie">
+
+        <div class="campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome completo">
+        </div>
+
+        <div class="campo">
+            <label for="empresa">Nome da empresa</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Nome do seu comércio">
+        </div>
+
+        <div class="campo">
+            <label for="whatsapp">Telefone / WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(45) 99999-0000">
+        </div>
+
+        <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="voce@email.com">
+        </div>
+
+        <div class="campo">
+            <label for="categoria">Categoria desejada</label>
+            <!-- As opções abaixo são as 5 categorias que o site usa hoje -->
+            <select id="categoria" name="categoria">
+                <option value="alimentacao">Alimentação</option>
+                <option value="automoveis">Automóveis</option>
+                <option value="beleza-e-saude">Beleza e Saúde</option>
+                <option value="construcao">Construção</option>
+                <option value="eletronicos">Eletrônicos</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre o seu negócio"></textarea>
+        </div>
+
+        <button type="submit" class="botao-enviar">Quero Anunciar</button>
+    </form>
+
+</body>
+</html>
