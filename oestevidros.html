@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- TROCAR: coloque o nome da empresa no título da aba -->
-    <title>Nome da Empresa - Portal Cascavel</title>
-<link rel="icon" type="image/png" href="img/logo.ico">
+    <title>Oeste Vidros - Portal Cascavel</title>
+
+    <link rel="icon" type="image/png" href="img/logo.ico">
+
     <style>
 
         /* =========================================================
@@ -75,6 +76,7 @@
             height: 56px;
             border-radius: 50%;
             background-color: var(--cor-destaque);
+            object-fit: cover;
         }
 
         .banertexto h1 {
@@ -330,7 +332,7 @@
          Igual em todas as páginas do site.
     =========================================================== -->
     <header class="baner">
-        <img src="" alt="" class="logoimg">
+        <img src="img/logoportaldecascavel.jpg" alt="Portal Cascavel" class="logoimg">
         <div class="banertexto">
             <h1>Portal Cascavel</h1>
             <p>Encontre os melhores comércios de Cascavel.</p>
@@ -340,23 +342,17 @@
 
     <!-- ===========================================================
          CABEÇALHO DO ANUNCIANTE
-         TROCAR: logo, nome da empresa e categoria de cada anunciante.
     =========================================================== -->
     <section class="anunciante-topo">
-        <!-- TROCAR: caminho da logo, ex: img/alimentacao/irani.png -->
-        <img src="img/CATEGORIA/logo.png" alt="Nome da Empresa" class="anunciante-logo">
+        <img src="img/construcao/vidros oeste.jpg" alt="Oeste Vidros e Esquadrias" class="anunciante-logo">
         <div>
-            <!-- TROCAR: nome da empresa -->
-            <h2>Nome da Empresa</h2>
-            <!-- TROCAR: categoria em que esse anunciante está -->
-            <span class="anunciante-categoria">Categoria</span>
+            <h2>Oeste Vidros</h2>
+            <span class="anunciante-categoria">Vidraçaria & Esquadrias de Alumínio</span>
         </div>
     </section>
 
     <!-- ===========================================================
          CONTEÚDO PRINCIPAL
-         Coluna esquerda: descrição, fotos e produtos/serviços.
-         Coluna direita: horário, contato, endereço e redes sociais.
     =========================================================== -->
     <div class="anunciante-conteudo">
 
@@ -365,31 +361,29 @@
 
             <div class="bloco">
                 <h3>Sobre a empresa</h3>
-                <!-- TROCAR: descrição completa da empresa -->
                 <p>
-                    Escreva aqui a descrição completa do anunciante: história
-                    da empresa, diferenciais e o que o cliente pode esperar
-                    ao visitar ou entrar em contato.
+                    A Oeste Vidros e Esquadrias de Alumínio oferece soluções completas em vidraçaria para projetos residenciais e comerciais em Cascavel e região. Especializada no desenvolvimento, fabricação e instalação de vidros temperados, espelhos e esquadrias de alumínio sob medida, a empresa trabalha focando em acabamento de excelência, resistência e alto padrão estético para cada obra.
                 </p>
             </div>
 
             <div class="bloco">
                 <h3>Fotos</h3>
-                <!-- TROCAR: as 3 imagens abaixo pelas fotos reais do anunciante -->
                 <div class="anunciante-fotos">
-                    <img src="img/CATEGORIA/foto1.jpg" alt="Foto 1 da empresa">
-                    <img src="img/CATEGORIA/foto2.jpg" alt="Foto 2 da empresa">
-                    <img src="img/CATEGORIA/foto3.jpg" alt="Foto 3 da empresa">
+                    <img src="img/branco.jpg" alt="Foto 1">
+                    <img src="img/branco.jpg" alt="Foto 1">
+                    <img src="img/branco.jpg" alt="Foto 1">
                 </div>
             </div>
 
             <div class="bloco">
                 <h3>Produtos e serviços</h3>
-                <!-- TROCAR: lista de produtos/serviços oferecidos -->
                 <ul class="lista-produtos">
-                    <li>Produto ou serviço 1</li>
-                    <li>Produto ou serviço 2</li>
-                    <li>Produto ou serviço 3</li>
+                    <li>Vidros Temperados, Laminados e Serigrafados</li>
+                    <li>Esquadrias de Alumínio sob Medida (Linha Gold, Suprema, etc.)</li>
+                    <li>Box para Banheiro (Convencional, Elegance e Roldanas Aparentes)</li>
+                    <li>Portas, Janelas, Divisórias e Fechamento de Sacadas</li>
+                    <li>Espelhos Decorativos e Lapidados</li>
+                    <li>Guarda-Corpo, Corrimão e Coberturas de Vidro</li>
                 </ul>
             </div>
 
@@ -400,34 +394,30 @@
             <div class="bloco">
                 <h3>Informações</h3>
 
-                <!-- TROCAR: horário de atendimento -->
                 <div class="contato-linha">
                     <span>Horário</span>
-                    <span>Seg a Sex, 8h às 18h</span>
+                    <span>Seg a Sex 08h-18h | Sáb 08h-12h</span>
                 </div>
 
-                <!-- TROCAR: telefone -->
                 <div class="contato-linha">
                     <span>Telefone</span>
-                    <span>(45) 99999-0000</span>
+                    <span>(45) 3000-0000</span>
                 </div>
 
-                <!-- TROCAR: endereço -->
                 <div class="contato-linha">
                     <span>Endereço</span>
-                    <span>Rua Exemplo, 123 - Cascavel/PR</span>
+                    <span>Cascavel Velho - Cascavel/PR</span>
                 </div>
 
                 <!-- Botões de contato -->
                 <div class="botoes-contato">
-                    <a href="#" class="botao-contato botao-whatsapp">Chamar no WhatsApp</a>
-                    <a href="#" class="botao-contato botao-telefone">Ligar agora</a>
+                    <a href="https://wa.me/5545990000000" target="_blank" class="botao-contato botao-whatsapp">Chamar no WhatsApp</a>
+                    <a href="tel:4530000000" class="botao-contato botao-telefone">Ligar agora</a>
                 </div>
 
-                <!-- TROCAR: links das redes sociais -->
                 <div class="redes-sociais">
-                    <a href="#">Instagram</a>
-                    <a href="#">Facebook</a>
+                    <a href="#" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">Facebook</a>
                 </div>
             </div>
         </div>
