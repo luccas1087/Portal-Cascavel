@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datec Informática - Portal Cascavel</title>
+
+    <link rel="icon" type="image/png" href="img/logo.ico">
+
+    <style>
+
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* VARIÁVEIS GLOBAIS */
+        :root {
+            --cor-fundo: #F5F8FA;
+            --cor-superficie: #FFFFFF;
+            --cor-texto: #1E2A36;
+            --cor-texto-suave: #5B6B79;
+            --cor-linha: #E1E7EC;
+            --cor-destaque: #2C6E91;
+            --cor-destaque-escuro: #1F4F6B;
+            --cor-secundaria: #3C9D9B;
+            --raio: 10px;
+            --sombra: 0 2px 6px rgba(30, 42, 54, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        h1, h2, h3 {
+            color: var(--cor-texto);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+        .baner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background-color: var(--cor-superficie);
+            border-bottom: 1px solid var(--cor-linha);
+            padding: 16px 24px;
+        }
+
+        .logoimg {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--cor-destaque);
+            object-fit: cover;
+        }
+
+        .banertexto h1 {
+            font-size: 22px;
+        }
+
+        .banertexto p {
+            font-size: 14px;
+            color: var(--cor-texto-suave);
+        }
+
+        .voltar {
+            margin-left: auto;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cor-destaque);
+            white-space: nowrap;
+        }
+
+        .voltar:hover {
+            color: var(--cor-destaque-escuro);
+        }
+
+        /* ANUNCIANTE TOPO */
+        .anunciante-topo {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 36px 24px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .anunciante-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: var(--raio);
+            object-fit: contain;
+            background-color: var(--cor-superficie);
+            border: 1px solid var(--cor-linha);
+            padding: 8px;
+        }
+
+        .anunciante-topo h2 {
+            font-size: 26px;
+        }
+
+        .anunciante-categoria {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--cor-secundaria);
+            background-color: #EAF5F4;
+            padding: 3px 10px;
+            border-radius: 999px;
+        }
+
+        /* CONTEÚDO */
+        .anunciante-conteudo {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 24px 60px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .bloco {
+            background-color: var(--cor-superficie);
+            border: 1px solid var(--cor-linha);
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .bloco h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--cor-destaque-escuro);
+        }
+
+        .bloco p {
+            font-size: 14px;
+            color: var(--cor-texto-suave);
+        }
+
+        .anunciante-fotos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .anunciante-fotos img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .lista-produtos {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .lista-produtos li {
+            font-size: 14px;
+            color: var(--cor-texto-suave);
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .lista-produtos li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--cor-secundaria);
+        }
+
+        /* LATERAL */
+        .contato-linha {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--cor-linha);
+            font-size: 13.5px;
+        }
+
+        .contato-linha:last-child {
+            border-bottom: none;
+        }
+
+        .contato-linha span:first-child {
+            color: var(--cor-texto-suave);
+        }
+
+        .botoes-contato {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .botao-contato {
+            text-align: center;
+            padding: 10px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .botao-whatsapp {
+            background-color: var(--cor-secundaria);
+            color: #FFFFFF;
+        }
+
+        .botao-whatsapp:hover {
+            background-color: #2E7C7A;
+        }
+
+        .botao-telefone {
+            background-color: var(--cor-fundo);
+            border: 1px solid var(--cor-linha);
+            color: var(--cor-texto);
+        }
+
+        .botao-telefone:hover {
+            border-color: var(--cor-destaque);
+            color: var(--cor-destaque);
+        }
+
+        .redes-sociais {
+            display: flex;
+            gap: 14px;
+            margin-top: 14px;
+            font-size: 13px;
+        }
+
+        .redes-sociais a {
+            color: var(--cor-destaque);
+            font-weight: 600;
+        }
+
+        .redes-sociais a:hover {
+            color: var(--cor-destaque-escuro);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+            .anunciante-conteudo {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .baner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .voltar {
+                margin-left: 0;
+            }
+
+            .anunciante-topo {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .anunciante-fotos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="baner">
+        <img src="img/logoportaldecascavel.jpg" alt="" class="logoimg">
+        <div class="banertexto">
+            <h1>Portal Cascavel</h1>
+            <p>Encontre os melhores comércios de Cascavel.</p>
+        </div>
+        <a href="index.html" class="voltar">&larr; Voltar à página principal</a>
+    </header>
+
+    <!-- ANUNCIANTE TOPO -->
+    <section class="anunciante-topo">
+        <img src="img/informatica/datec.jpg" alt="Foto 1 " class="anunciante-logo">
+        <div>
+            <h2>Datec Informática</h2>
+            <span class="anunciante-categoria">Informática & Assistência Técnica</span>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <div class="anunciante-conteudo">
+
+        <!-- COLUNA ESQUERDA -->
+        <div>
+
+            <div class="bloco">
+                <h3>Sobre a empresa</h3>
+                <p>
+                    A Datec Informática é especializada no fornecimento de equipamentos de tecnologia, periféricos e serviços de manutenção para computadores e notebooks em Cascavel. Com foco em suprir demandas corporativas e residenciais, oferece montagem de máquinas sob medida, upgrade de sistemas e suporte técnico ágil com garantia de qualidade.
+                </p>
+            </div>
+
+            <div class="bloco">
+                <h3>Fotos</h3>
+                <div class="anunciante-fotos">
+                    <img src="img/branco.jpg" alt="Foto 1 ">
+                    <img src="img/branco.jpg" alt="Foto 1 ">
+                    <img src="img/branco.jpg" alt="Foto 1 ">
+                </div>
+            </div>
+
+            <div class="bloco">
+                <h3>Produtos e serviços</h3>
+                <ul class="lista-produtos">
+                    <li>Venda de Computadores, Notebooks e Monitores</li>
+                    <li>Montagem e Upgrade de PCs Gamer e para Trabalho</li>
+                    <li>Manutenção Preventiva, Correutiva e Limpeza Interna</li>
+                    <li>Substituição de Peças (SSDs, Memórias RAM, Placas de Vídeo)</li>
+                    <li>Formatação, Instalação de Sistemas e Remoção de Vírus</li>
+                    <li>Periféricos, Acessórios de Rede e Suprimentos de Informática</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA -->
+        <div>
+            <div class="bloco">
+                <h3>Informações</h3>
+
+                <div class="contato-linha">
+                    <span>Horário</span>
+                    <span>Seg a Sex 08h-18h | Sáb 08h-12h</span>
+                </div>
+
+                <div class="contato-linha">
+                    <span>Telefone</span>
+                    <span>(45) 3000-0000</span>
+                </div>
+
+                <div class="contato-linha">
+                    <span>Endereço</span>
+                    <span>Centro - Cascavel/PR</span>
+                </div>
+
+                <div class="botoes-contato">
+                    <a href="https://wa.me/5545990000000" target="_blank" class="botao-contato botao-whatsapp">Chamar no WhatsApp</a>
+                    <a href="tel:4530000000" class="botao-contato botao-telefone">Ligar agora</a>
+                </div>
+
+                <div class="redes-sociais">
+                    <a href="#" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">Facebook</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
