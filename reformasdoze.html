@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- TROCAR: coloque o nome da empresa no título da aba -->
-    <title>Nome da Empresa - Portal Cascavel</title>
+    <title>Reformas do Zé - Portal Cascavel</title>
 
     <link rel="icon" type="image/png" href="img/logo.ico">
-    
+
     <style>
 
-        /* 
-           RESET BÁSICO
-           Igual ao index.html.
-         */
+        /* RESET */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* 
-           CORES E VARIÁVEIS GLOBAIS
-           As mesmas do site principal e da página "Anuncie Conosco",
-           pra manter a identidade visual em qualquer página.
-        */
+        /* VARIÁVEIS GLOBAIS */
         :root {
             --cor-fundo: #F5F8FA;
             --cor-superficie: #FFFFFF;
@@ -59,10 +51,7 @@
             color: inherit;
         }
 
-        /* =========================================================
-           HEADER / BANNER
-           Mesma estrutura do site principal, com link de volta.
-        ========================================================= */
+        /* HEADER */
         .baner {
             display: flex;
             align-items: center;
@@ -77,6 +66,7 @@
             height: 56px;
             border-radius: 50%;
             background-color: var(--cor-destaque);
+            object-fit: cover;
         }
 
         .banertexto h1 {
@@ -100,10 +90,7 @@
             color: var(--cor-destaque-escuro);
         }
 
-        /* =========================================================
-           CABEÇALHO DO ANUNCIANTE
-           Logo grande + nome + categoria, no topo da página.
-        ========================================================= */
+        /* ANUNCIANTE TOPO */
         .anunciante-topo {
             max-width: 900px;
             margin: 0 auto;
@@ -138,17 +125,13 @@
             border-radius: 999px;
         }
 
-        /* =========================================================
-           CONTEÚDO PRINCIPAL
-           Container central que agrupa descrição, fotos, produtos
-           e informações de contato/endereço.
-        ========================================================= */
+        /* CONTEÚDO */
         .anunciante-conteudo {
             max-width: 900px;
             margin: 0 auto;
             padding: 24px 24px 60px;
             display: grid;
-            grid-template-columns: 2fr 1fr; /* conteúdo à esquerda, contato à direita */
+            grid-template-columns: 2fr 1fr;
             gap: 24px;
         }
 
@@ -172,7 +155,6 @@
             color: var(--cor-texto-suave);
         }
 
-        /* Galeria simples de fotos do anunciante */
         .anunciante-fotos {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -186,7 +168,6 @@
             border-radius: 8px;
         }
 
-        /* Lista de produtos/serviços */
         .lista-produtos {
             list-style: none;
             display: flex;
@@ -201,7 +182,6 @@
             position: relative;
         }
 
-        /* Marcador colorido no lugar do "bullet" padrão da lista */
         .lista-produtos li::before {
             content: "";
             position: absolute;
@@ -213,11 +193,7 @@
             background-color: var(--cor-secundaria);
         }
 
-        /* =========================================================
-           BLOCO LATERAL DE CONTATO
-           Horário, telefone, WhatsApp, endereço, redes sociais e
-           botões de ação.
-        ========================================================= */
+        /* LATERAL */
         .contato-linha {
             display: flex;
             justify-content: space-between;
@@ -286,20 +262,13 @@
             color: var(--cor-destaque-escuro);
         }
 
-        /* =========================================================
-           RESPONSIVIDADE (@media)
-           Mesmos pontos de quebra do restante do site.
-        ========================================================= */
-
-        /* Telas médias (tablets, até 900px): bloco de contato desce
-           para baixo do conteúdo principal em vez de ficar do lado. */
+        /* RESPONSIVIDADE */
         @media (max-width: 900px) {
             .anunciante-conteudo {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Telas pequenas (celulares, até 600px) */
         @media (max-width: 600px) {
 
             .baner {
@@ -327,10 +296,7 @@
 </head>
 <body>
 
-    <!-- ===========================================================
-         HEADER
-         Igual em todas as páginas do site.
-    =========================================================== -->
+    <!-- HEADER -->
     <header class="baner">
         <img src="img/logoportaldecascavel.jpg" alt="" class="logoimg">
         <div class="banertexto">
@@ -340,26 +306,16 @@
         <a href="index.html" class="voltar">&larr; Voltar à página principal</a>
     </header>
 
-    <!-- ===========================================================
-         CABEÇALHO DO ANUNCIANTE
-         TROCAR: logo, nome da empresa e categoria de cada anunciante.
-    =========================================================== -->
+    <!-- ANUNCIANTE TOPO -->
     <section class="anunciante-topo">
-        <!-- TROCAR: caminho da logo, ex: img/alimentacao/irani.png -->
-        <img src="img/alimentação/almayer.jpg" alt="Nome da Empresa" class="anunciante-logo">
+        <img src="img/profissionaisautonomos/reformasdoze.jpg" alt="Foto 1 " class="anunciante-logo">
         <div>
-            <!-- TROCAR: nome da empresa -->
-            <h2>Allmayer</h2>
-            <!-- TROCAR: categoria em que esse anunciante está -->
-            <span class="anunciante-categoria">Alimentação</span>
+            <h2>Reformas do Zé</h2>
+            <span class="anunciante-categoria">Pedreiro & Pequenos Reparos</span>
         </div>
     </section>
 
-    <!-- ===========================================================
-         CONTEÚDO PRINCIPAL
-         Coluna esquerda: descrição, fotos e produtos/serviços.
-         Coluna direita: horário, contato, endereço e redes sociais.
-    =========================================================== -->
+    <!-- CONTEÚDO -->
     <div class="anunciante-conteudo">
 
         <!-- COLUNA ESQUERDA -->
@@ -367,69 +323,62 @@
 
             <div class="bloco">
                 <h3>Sobre a empresa</h3>
-                <!-- TROCAR: descrição completa da empresa -->
                 <p>
-                    Escreva aqui a descrição completa do anunciante: história
-                    da empresa, diferenciais e o que o cliente pode esperar
-                    ao visitar ou entrar em contato.
+                    Reformas do Zé conta com pedreiro autônomo especializado em reformas residenciais e comerciais no Bairro Centro em Cascavel. Com anos de experiência na construção civil, oferece serviços caprichados e com ótimo acabamento, pontualidade na entrega e soluções para reparos de qualquer tamanho.
                 </p>
             </div>
 
             <div class="bloco">
                 <h3>Fotos</h3>
-                <!-- TROCAR: as 3 imagens abaixo pelas fotos reais do anunciante -->
                 <div class="anunciante-fotos">
-                    <img src="img/branco.jpg" alt="Foto 1 da empresa">
-                    <img src="img/branco.jpg" alt="Foto 2 da empresa">
-                    <img src="img/branco.jpg" alt="Foto 3 da empresa">
+                    <img src="img/branco.jpg" alt="Foto 1 ">
+                    <img src="img/branco.jpg" alt="Foto 1 ">
+                    <img src="img/branco.jpg" alt="Foto 1 ">
                 </div>
             </div>
-        
+
             <div class="bloco">
                 <h3>Produtos e serviços</h3>
-                <!-- TROCAR: lista de produtos/serviços oferecidos -->
                 <ul class="lista-produtos">
-                    <li>Hortifruti</li>
-                    <li>Carnes</li>
-                    <li>Produtos em geral</li>
+                    <li>Reformas Residenciais e Comerciais em Geral</li>
+                    <li>Assentamento de Pisos, Porcelanatos e Revestimentos</li>
+                    <li>Construção e Elevação de Muros e Paredes</li>
+                    <li>Reparos em Reboco, Chapisco e Contrapiso</li>
+                    <li>Impermeabilização e Correção de Infiltrações</li>
+                    <li>Pequenos Reparos, Retalhes e Manutenções Diversas</li>
                 </ul>
             </div>
 
         </div>
 
-        <!-- COLUNA DIREITA: informações de contato -->
+        <!-- COLUNA DIREITA -->
         <div>
             <div class="bloco">
                 <h3>Informações</h3>
 
-                <!-- TROCAR: horário de atendimento -->
                 <div class="contato-linha">
                     <span>Horário</span>
-                    <span>Seg a Dom, 8h às h</span>
+                    <span>Seg a Sáb 07h30-18h</span>
                 </div>
 
-                <!-- TROCAR: telefone -->
                 <div class="contato-linha">
                     <span>Telefone</span>
-                    <span>(45) 99999-0000</span>
+                    <span>(45) 3000-0000</span>
                 </div>
 
-                <!-- TROCAR: endereço -->
                 <div class="contato-linha">
                     <span>Endereço</span>
-                    <span>Rua Exemplo, 123 - Cascavel/PR</span>
+                    <span>Centro - Cascavel - PR</span>
                 </div>
 
-                <!-- Botões de contato -->
                 <div class="botoes-contato">
-                    <a href="#" class="botao-contato botao-whatsapp">Chamar no WhatsApp</a>
-                    <a href="#" class="botao-contato botao-telefone">Ligar agora</a>
+                    <a href="https://wa.me/5545990000000" target="_blank" class="botao-contato botao-whatsapp">Chamar no WhatsApp</a>
+                    <a href="tel:4530000000" class="botao-contato botao-telefone">Ligar agora</a>
                 </div>
 
-                <!-- TROCAR: links das redes sociais -->
                 <div class="redes-sociais">
-                    <a href="#">Instagram</a>
-                    <a href="#">Facebook</a>
+                    <a href="#" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">Facebook</a>
                 </div>
             </div>
         </div>
