@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-tema="claro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Cascavel</title>
 
-    
     <link rel="icon" type="image/png" href="img/logo.ico">
+
+    <!-- Aplica o tema salvo ANTES de desenhar a página (evita "piscar" claro->escuro) -->
+    <script>
+        document.documentElement.setAttribute('data-tema', localStorage.getItem('tema') || 'claro');
+    </script>
 
     <style>
 
@@ -40,11 +44,29 @@
             --sombra: 0 2px 6px rgba(30, 42, 54, 0.08);
         }
 
+        /*
+           TEMA ESCURO
+           Só redefine as variáveis: o site inteiro muda sozinho,
+           porque todo o CSS usa var(--...).
+        */
+        :root[data-tema="escuro"] {
+            --cor-fundo: #121A21;
+            --cor-superficie: #1B2630;
+            --cor-texto: #E6EDF2;
+            --cor-texto-suave: #9FB3C2;
+            --cor-linha: #2C3A46;
+            --cor-destaque: #4A9CC6;
+            --cor-destaque-escuro: #1F4F6B;
+            --cor-secundaria: #5CC4C2;
+            --sombra: 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
         body {
             font-family: 'Segoe UI', Arial, sans-serif; /* fonte simples e legível */
             background-color: var(--cor-fundo);
             color: var(--cor-texto);
             line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         img {
@@ -89,6 +111,23 @@
         .banertexto p {
             font-size: 14px;
             color: var(--cor-texto-suave);
+        }
+
+        /* Botão de alternar tema (claro/escuro) */
+        .botao-tema {
+            margin-left: auto;          /* empurra o botão para a direita */
+            padding: 8px 16px;
+            background-color: var(--cor-destaque);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 999px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .botao-tema:hover {
+            background-color: var(--cor-destaque-escuro);
         }
 
         /* 
@@ -255,6 +294,10 @@
             color: var(--cor-destaque-escuro);
         }
 
+        :root[data-tema="escuro"] .cartao-vaga strong {
+            color: var(--cor-destaque); /* no escuro, o azul escuro some no fundo */
+        }
+
         .cartao-vaga span {
             font-size: 13px;
             color: var(--cor-texto-suave);
@@ -350,6 +393,10 @@
                 gap: 8px;
             }
 
+            .botao-tema {
+                margin-left: 0;
+            }
+
             .sobrenos h1 {
                 font-size: 14px;
             }
@@ -379,6 +426,7 @@
                 Encontre os melhores comércios de Cascavel.
             </p>
         </div>
+        <button id="botao-tema" class="botao-tema" type="button">🌙 Tema escuro</button>
     </header>
     <section class="sobrenos">
         <h1>
@@ -1003,6 +1051,26 @@
             &copy; 2026 Portal Cascavel. Todos os direitos reservados.
         </div>
     </footer>
+
+<script>
+    const botaoTema = document.querySelector('#botao-tema');
+
+    // Atualiza o texto do botão conforme o tema atual
+    function atualizarBotao(tema) {
+        botaoTema.textContent = tema === 'escuro' ? '☀️ Tema claro' : '🌙 Tema escuro';
+    }
+
+    atualizarBotao(document.documentElement.getAttribute('data-tema'));
+
+    // Ao clicar: alterna o tema e salva a escolha
+    botaoTema.addEventListener('click', () => {
+        const atual = document.documentElement.getAttribute('data-tema');
+        const novo = atual === 'escuro' ? 'claro' : 'escuro';
+        document.documentElement.setAttribute('data-tema', novo);
+        localStorage.setItem('tema', novo);
+        atualizarBotao(novo);
+    });
+</script>
 
 </body>
 </html>
