@@ -45,7 +45,7 @@
         }
 
         /*
-           TEMA ESCURO
+           TEMA ESCURO6v 
            Só redefine as variáveis: o site inteiro muda sozinho,
            porque todo o CSS usa var(--...).
         */
@@ -235,7 +235,7 @@
             line-height: 1.4;
             color: var(--cor-texto-suave);
             display: -webkit-box;
-            -webkit-line-clamp: 4;
+
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -244,7 +244,6 @@
             font-size: 12px;
             color: var(--cor-secundaria);
             font-weight: 600;
-            -webkit-line-clamp: 1;
         }
 
         .card-botao {
@@ -426,7 +425,7 @@
                 Encontre os melhores comércios de Cascavel.
             </p>
         </div>
-        <button id="botao-tema" class="botao-tema" type="button">🌙 Tema escuro</button>
+        <button id="botao-tema" class="botao-tema" type="button">Tema escuro</button>
     </header>
     <section class="sobrenos">
         <h1>
@@ -1055,14 +1054,12 @@
 <script>
     const botaoTema = document.querySelector('#botao-tema');
 
-    // Atualiza o texto do botão conforme o tema atual
     function atualizarBotao(tema) {
-        botaoTema.textContent = tema === 'escuro' ? '☀️ Tema claro' : '🌙 Tema escuro';
+        botaoTema.textContent = tema === 'escuro' ? 'Tema' : 'Tema';
     }
 
     atualizarBotao(document.documentElement.getAttribute('data-tema'));
 
-    // Ao clicar: alterna o tema e salva a escolha
     botaoTema.addEventListener('click', () => {
         const atual = document.documentElement.getAttribute('data-tema');
         const novo = atual === 'escuro' ? 'claro' : 'escuro';

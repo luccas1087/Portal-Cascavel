@@ -71,6 +71,26 @@
             padding: 16px 24px;
         }
 
+        .botao-tema {
+                margin-left: 0;
+            }
+
+            /* Botão de alternar tema (claro/escuro) */
+        .botao-tema {
+            margin-left: auto;          /* empurra o botão para a direita */
+            padding: 8px 16px;
+            background-color: var(--cor-destaque);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 999px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .botao-tema:hover {
+            background-color: var(--cor-destaque-escuro);
+        }
+
         .logoimg {
             width: 56px;
             height: 56px;
@@ -338,6 +358,7 @@
             <p>Encontre os melhores comércios de Cascavel.</p>
         </div>
         <a href="index.html" class="voltar">&larr; Voltar à página principal</a>
+        <button id="botao-tema" class="botao-tema" type="button">Tema escuro</button>
     </header>
 
     <!-- ===========================================================
@@ -423,6 +444,22 @@
         </div>
 
     </div>
+<script>
+    const botaoTema = document.querySelector('#botao-tema');
 
+    function atualizarBotao(tema) {
+        botaoTema.textContent = tema === 'escuro' ? 'Tema' : 'Tema';
+    }
+
+    atualizarBotao(document.documentElement.getAttribute('data-tema'));
+
+    botaoTema.addEventListener('click', () => {
+        const atual = document.documentElement.getAttribute('data-tema');
+        const novo = atual === 'escuro' ? 'claro' : 'escuro';
+        document.documentElement.setAttribute('data-tema', novo);
+        localStorage.setItem('tema', novo);
+        atualizarBotao(novo);
+    });
+</script>
 </body>
 </html>
